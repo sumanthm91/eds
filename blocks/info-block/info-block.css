@@ -1,0 +1,42 @@
+.people-progress-prosperity-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.text-content, .image-content {
+  flex: 0 0 50%;
+}
+
+.text-content {
+  margin-right: 20px;
+}
+
+.text-content h1 {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.image-content picture, .image-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.animate__animated {
+  visibility: hidden;
+}
+
+.animate__animated.animate__fadeIn,
+.animate__animated.animate__fadeInLeft,
+.animate__animated.animate__fadeInRight {
+  visibility: visible;
+}
