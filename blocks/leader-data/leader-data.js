@@ -1,25 +1,20 @@
 export default function decorate(block) {
-  const leaderCards = [...block.children].map((item) => {
-    const imgSrc = item.querySelector('img').src;
-    const imgAlt = item.querySelector('img').alt;
-    const nameTitle = item.children[1].textContent.trim();
-    const articleLink = item.querySelector('a').href;
-    const articleText = item.querySelector('a').textContent.trim();
+  const leaders = [...block.children];
+  block.innerHTML = leaders.map(leader => {
+    const imgSrc = leader.querySelector('picture img').src;
+    const imgAlt = leader.querySelector('picture img').alt;
+    const name = leader.children[1].textContent;
+    const title = leader.children[2].querySelector('a').textContent;
+    const linkHref = leader.children[2].querySelector('a').href;
 
     return `
       <div class="leader-card">
-        <img src="${imgSrc}" alt="${imgAlt}">
+        <img src="${imgSrc}" alt="${imgAlt}" />
         <div class="leader-info">
-          <h3>${nameTitle}</h3>
-          <p><a href="${articleLink}">${articleText}</a></p>
+          <h3>${name}</h3>
+          <p><a href="${linkHref}">${title}</a></p>
         </div>
       </div>
     `;
-  });
-
-  block.innerHTML = `
-    <div class="leader-cards">
-      ${leaderCards.join('')}
-    </div>
-  `;
+  }).join('');
 }

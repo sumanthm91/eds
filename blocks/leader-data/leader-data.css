@@ -1,25 +1,27 @@
 .leader-data {
-  background: var(--background-color);
-}
-
-.leader-data .leader-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
 }
 
 .leader-data .leader-card {
+  flex: 1 1 calc(25% - 20px);
   background: var(--background-color);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  flex: 1 1 calc(25% - 16px);
-  max-width: calc(25% - 16px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.leader-data .leader-card:hover {
+  transform: translateY(-5px);
 }
 
 .leader-data .leader-card img {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 .leader-data .leader-info {
@@ -27,29 +29,28 @@
 }
 
 .leader-data .leader-info h3 {
-  font-family: var(--heading-font-family);
   font-size: var(--heading-font-size-m);
-  margin: 0 0 8px;
+  font-family: var(--heading-font-family);
   color: var(--text-color);
+  margin: 0;
 }
 
 .leader-data .leader-info p {
-  font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  margin: 0;
+  font-family: var(--body-font-family);
   color: var(--text-color);
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
   .leader-data .leader-card {
-    flex: 1 1 calc(50% - 16px);
-    max-width: calc(50% - 16px);
+    flex: 1 1 calc(50% - 20px);
   }
 }
 
 @media (max-width: 600px) {
   .leader-data .leader-card {
     flex: 1 1 100%;
-    max-width: 100%;
   }
 }

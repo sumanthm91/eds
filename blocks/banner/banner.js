@@ -1,22 +1,19 @@
 export default function decorate(block) {
-  // Extract data from existing block HTML
   const pictureSources = [...block.querySelectorAll('picture source')];
   const imgSrc = block.querySelector('picture img').src;
-  const headingText = block.querySelector('h2').textContent.trim();
-  const strongText = block.querySelector('p strong').textContent.trim();
-  const paragraphText = block.querySelector('p:nth-of-type(2)').textContent.trim();
+  const imgAlt = block.querySelector('picture img').alt;
+  const headingStrong = block.querySelector('p strong').textContent;
+  const heading = block.querySelector('h2').textContent;
+  const paragraph = block.querySelectorAll('p')[1].textContent;
 
-  // Create new HTML structure
   block.innerHTML = `
     <div class="banner-content">
-      <div class="banner-text">
-        <h3>${strongText}</h3>
-        <h1>${headingText}</h1>
-        <p>${paragraphText}</p>
-      </div>
+      <h2>${headingStrong}</h2>
+      <h1>${heading}</h1>
+      <p>${paragraph}</p>
     </div>
   `;
 
-  // Set the background image dynamically
+  // Apply the background image using imgSrc value
   block.style.backgroundImage = `url('${imgSrc}')`;
 }
