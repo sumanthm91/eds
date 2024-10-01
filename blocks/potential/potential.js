@@ -11,33 +11,29 @@ export default function decorate(block) {
 
   // Create new HTML structure
   block.innerHTML = `
-    <div class="realise-potential-wrapper">
-      <div class="image-section">
-        <picture>
-          ${pictureSources.map(source => source.outerHTML).join('')}
-          <img src="${imgSrc}" alt="${imgAlt}">
-        </picture>
-      </div>
-      <div class="text-section">
+    <div class="potential-content">
+      <img src="${imgSrc}" alt="${imgAlt}" class="potential-image">
+      <div class="potential-text">
         <h2>${heading}</h2>
         <p>${paragraph}</p>
-        <button onclick="location.href='${linkHref}'">${linkText}</button>
+        <a href="${linkHref}" class="button">${linkText}</a>
       </div>
     </div>
   `;
 
   // Add scroll event listener to trigger animations
   window.addEventListener('scroll', () => {
-    const wrapper = document.querySelector('.realise-potential-wrapper');
-    const imageSection = wrapper.querySelector('.image-section');
-    const textSection = wrapper.querySelector('.text-section');
-    const wrapperPosition = wrapper.getBoundingClientRect().top;
+    const potentialContent = document.querySelector('.potential-content');
+    const potentialElements = potentialContent.querySelectorAll('img, h2, p, .button');
+    const contentPosition = potentialContent.getBoundingClientRect().top;
     const screenPosition = window.innerHeight / 1.3;
 
-    if (wrapperPosition < screenPosition) {
-      wrapper.classList.add('animate__animated', 'animate__fadeIn');
-      imageSection.classList.add('animate__animated', 'animate__fadeInLeft');
-      textSection.classList.add('animate__animated', 'animate__fadeInRight');
+    if (contentPosition < screenPosition) {
+      potentialContent.classList.add('animate__animated', 'animate__fadeIn');
+      potentialElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.1}s`;
+        element.classList.add('animate__animated', 'animate__fadeInUp');
+      });
     }
   });
 }

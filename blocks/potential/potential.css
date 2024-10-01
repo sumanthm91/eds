@@ -1,75 +1,89 @@
-.realise-potential-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #ffffff;
+.potential-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background-color: var(--background-color);
 }
 
-.image-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+.potential-content {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* Ensure sections stretch to the same height */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    visibility: hidden; /* Initially hidden to trigger animation */
 }
 
-.image-section img {
-  width: 80%;
-  height: auto;
-  border-radius: 5px;
+.potential-image {
+    flex: 1;
+    max-width: 100%;
+    height: 300px; /* Reduced the height of the image */
+    object-fit: cover; /* Ensure image covers the container while maintaining aspect ratio */
 }
 
-.text-section {
-  flex: 1;
-  padding: 0 20px;
+.potential-text {
+    flex: 1;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
 }
 
-.text-section h2 {
-  font-size: 32px;
-  font-weight: bold;
-  color: #333333;
-  margin-bottom: 20px;
+.potential-text h2,
+.potential-text p,
+.potential-text .button {
+    visibility: hidden; /* Initially hidden to trigger animation */
 }
 
-.text-section p {
-  font-size: 16px;
-  color: #555555;
-  line-height: 1.5;
-  margin-bottom: 20px;
+.potential-text h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-font-size-xl);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 20px;
 }
 
-.text-section button {
-  background-color: #333333;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
+.potential-text p {
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-m);
+    color: var(--text-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
-.text-section button:hover {
-  background-color: #555555;
+.potential-text .button {
+    background-color: #333 !important;
+    color: var(--background-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: var(--body-font-size-s);
+    font-weight: 500;
+    width: 25%;
+}
+
+.potential-text .button:hover {
+    background-color: var(--link-hover-color);
 }
 
 @media (max-width: 768px) {
-  .realise-potential-wrapper {
-    flex-direction: column;
-    text-align: center;
-  }
-  .image-section, .text-section {
-    padding: 0;
-  }
-  .image-section img {
-    width: 100%;
-  }
+    .potential-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .potential-text {
+        padding-left: 0;
+    }
 }
 
 .animate__animated {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .animate__animated.animate__fadeIn,
-.animate__animated.animate__fadeInLeft,
-.animate__animated.animate__fadeInRight {
-  visibility: visible;
+.animate__animated.animate__fadeInUp {
+    visibility: visible;
 }

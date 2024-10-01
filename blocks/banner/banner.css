@@ -1,5 +1,5 @@
 .banner-wrapper {
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 
 .banner {
@@ -8,10 +8,11 @@
     color: white;
     padding: 80px 20px;
     text-align: left;
+    visibility: hidden; /* Initially hidden to trigger animation */
 }
 
-.banner-content {
-    max-width: 600px;
+.banner h2, .banner h1, .banner p {
+    visibility: hidden; /* Initially hidden to trigger animation */
 }
 
 .banner h2 {
@@ -45,4 +46,13 @@
     .banner p {
         font-size: var(--body-font-size-s);
     }
+}
+
+.animate__animated {
+    visibility: hidden;
+}
+
+.animate__animated.animate__fadeIn,
+.animate__animated.animate__fadeInUp {
+    visibility: visible;
 }

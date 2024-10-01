@@ -12,6 +12,7 @@
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+  visibility: hidden; /* Initially hidden to trigger animation */
 }
 
 .leader-data .leader-card:hover {
@@ -20,7 +21,8 @@
 
 .leader-data .leader-card img {
   width: 100%;
-  height: auto;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensures the images maintain their aspect ratio */
   display: block;
 }
 
@@ -53,4 +55,12 @@
   .leader-data .leader-card {
     flex: 1 1 100%;
   }
+}
+
+.animate__animated {
+  visibility: hidden;
+}
+
+.animate__animated.animate__fadeInUp {
+  visibility: visible;
 }
