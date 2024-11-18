@@ -6,7 +6,6 @@
     justify-content: center;
     height: 100vh;
     background-color: black; /* Fallback color */
-    background: url("background-image.jpg") no-repeat center center; /* Fallback image */
     background-size: cover;
     color: white;
     text-align: center;
