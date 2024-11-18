@@ -1,35 +1,18 @@
 export default function decorate(block) {
-  const leaders = [...block.children];
-  block.innerHTML = leaders.map(leader => {
-    const imgSrc = leader.querySelector('picture img').src;
-    const imgAlt = leader.querySelector('picture img').alt;
-    const name = leader.children[1].textContent;
-    const title = leader.children[2].querySelector('a').textContent;
-    const linkHref = leader.children[2].querySelector('a').href;
+  const leaderData = [...block.children].map(child => {
+    const img = child.querySelector('img').src;
+    const name = child.querySelector('div:nth-child(2)').textContent;
+    const description = child.querySelector('div:nth-child(3) a').textContent;
+    const link = child.querySelector('div:nth-child(3) a').href;
 
-    return `
-      <div class="leader-card">
-        <img src="${imgSrc}" alt="${imgAlt}" />
-        <div class="leader-info">
-          <h3>${name}</h3>
-          <p><a href="${linkHref}">${title}</a></p>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  // Add scroll event listener to trigger animations
-  window.addEventListener('scroll', () => {
-    const cards = document.querySelectorAll('.leader-card');
-    const screenPosition = window.innerHeight / 1.3;
-
-    cards.forEach((card, index) => {
-      const cardPosition = card.getBoundingClientRect().top;
-
-      if (cardPosition < screenPosition) {
-        card.style.animationDelay = `${index * 0.1}s`; // Delay each card animation
-        card.classList.add('animate__animated', 'animate__fadeInUp');
-      }
-    });
+    return { img, name, description, link };
   });
+
+  block.innerHTML = leaderData.map((data) => `
+    <div class="leader-data-card">
+      <img src="${data.img}" alt="Leader Image">
+      <p class="leader-name">${data.name}</p>
+      <p class="leader-description"><a href="${data.link}">${data.description}</a></p>
+    </div>
+  `).join('');
 }
