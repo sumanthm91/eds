@@ -23,15 +23,23 @@ export default async function decorate(block) {
     bannerElement.style.backgroundImage = `url(${imgElement.src})`;
   }
 
-  // Fetch weather data
+  // Fetch geolocation data based on IP address
   try {
-    const response = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=12.9569&lon=77.7011&appid=1e917fcbb504f03e53e905f6060107ac&units=metric"
+    const geoResponse = await fetch("https://ipapi.co/json/");
+    if (!geoResponse.ok) {
+      throw new Error("Failed to fetch geolocation data");
+    }
+    const geoData = await geoResponse.json();
+    const { latitude, longitude } = geoData;
+
+    // Fetch weather data
+    const weatherResponse = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=1e917fcbb504f03e53e905f6060107ac&units=metric`
     );
-    if (!response.ok) {
+    if (!weatherResponse.ok) {
       throw new Error("Network response was not ok");
     }
-    const weatherData = await response.json();
+    const weatherData = await weatherResponse.json();
     const {
       main: { temp, temp_min, temp_max },
     } = weatherData;
